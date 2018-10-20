@@ -11,7 +11,7 @@ signal = spf.readframes(-1)
 signal = np.fromstring(signal, 'Int16')
 
 
-#If Stereo
+#Check the number of channels
 if spf.getnchannels() == 2:
     print ("Just single channel files")
     sys.exit(0)
