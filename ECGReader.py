@@ -12,7 +12,9 @@ root.title("ECGReader")
 first = StringVar()
 second = StringVar()
 
+#Creating a show method for displaying an ECG signal
 def show(event):
+    #Acquire input for the name of the signal .wav file to be displayed
     gsecond = second.get()
     
     spf = wave.open(gsecond,'r')
@@ -32,7 +34,8 @@ def show(event):
     plt.title('ECGSignal Wave.')
     plt.plot(signal)
     plt.show()    
-    
+
+# creating record method for recording an ECG signal    
 def record(event):
     
     # set line in parameters
@@ -41,6 +44,7 @@ def record(event):
     CHANNELS = 1
     RATE = 44100
     RECORD_SECONDS = 10
+    #Acquire input for the name of the signal .wav file to be created
     WAVE_OUTPUT_FILENAME = first.get()
     
     #create a pyaudio object that whill be used to read audio data
@@ -79,7 +83,7 @@ def record(event):
     wf.close()    
 
 
-
+#creating the labels, text input and button variables.
 label_1 = Label(root, text="Enter new file name")
 label_2 = Label(root, text="Enter file to view")
 entry_1 = Entry(root, textvariable=first)
@@ -87,15 +91,19 @@ entry_2 = Entry(root, textvariable=second)
 button1 = Button(root, text="Record")
 button2 = Button(root, text="View")
 
+#Placing the labels
 label_1.grid(row=0, column=0)
 label_2.grid(row=2, column=0)
 
+#Placing the text input
 entry_1.grid(row=1,column=0)
 entry_2.grid(row=3,column=0)
 
+#Placing the buttons
 button1.grid(row=0,column=1)
 button2.grid(row=2,column=1)
 
+#Connect buttons to commands
 button2.bind("<Button-1>",show)
 button1.bind("<Button-1>",record)
 
